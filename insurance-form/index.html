@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <!-- Bootstrap Icons CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css"
+    />
+    <!-- Custom CSS-->
+    <link rel="stylesheet" href="style/style.css" />
+
+    <title>Contact - No Pagamos Cooperativa</title>
+  </head>
+  <!-- Body -->
+  <body class="container align-content-center text-center">
+    <div class="col mx-auto">
+      <!-- Header -->
+      <h1 class="display-3">No Pagamos Cooperativa</h1>
+      <h2 class="text-muted">Request Contact</h2>
+      <div class="container align-content-center form-seguros">
+        <!-- Contact Form -->
+        <form class="needs-validation">
+          <!-- Name -->
+          <div class="form-floating mb-3">
+            <input
+              name="name"
+              type="text"
+              class="form-control"
+              id="nameInput"
+              placeholder="Arthur"
+              required
+            />
+            <label for="nameInput">Name</label>
+          </div>
+
+          <!-- Last Name -->
+          <div class="form-floating mb-3">
+            <input
+              name="lastName"
+              type="text"
+              class="form-control"
+              id="lastNameInput"
+              placeholder="Hopkins"
+              required
+            />
+            <label for="lastNameInput">Last Name</label>
+          </div>
+
+          <!-- DNI -->
+          <div class="form-floating mb-3">
+            <input
+              name="id"
+              type="number"
+              class="form-control"
+              id="idInput"
+              placeholder="00111222"
+              required
+            />
+            <label for="idInput" class="form-label">ID</label>
+          </div>
+
+          <!-- Tel -->
+          <div class="form-floating mb-3">
+            <input
+              name="phone"
+              type="tel"
+              class="form-control"
+              id="idTel"
+              placeholder="00111222"
+              required
+            />
+            <label for="idTel" class="form-label">Phone</label>
+          </div>
+
+          <!-- Email -->
+          <div class="form-floating mb-2">
+            <input
+              name="mail"
+              type="email"
+              class="form-control"
+              id="emailInput"
+              placeholder="you@example.com"
+              required
+            />
+            <label for="emailInput" class="form-label">Email address</label>
+            <p id="emailHelp" class="form-text text-muted">
+              We'll never share your email with anyone else.
+            </p>
+          </div>
+
+          <!-- Plans & Pricing -->
+          <div class="form-floating input-group mb-3">
+            <select
+              name="plan"
+              class="form-select"
+              id="floatingSelect"
+              aria-label="Floating label select example"
+              onchange="onPlanChange()"
+              required
+            >
+              <option value="0">Basic</option>
+              <option value="1">Standard</option>
+              <option value="2">Premium</option>
+            </select>
+            <label for="floatingSelect">Insurance Plan</label>
+            <span class="input-group-text" id="plan-pricing">$ 500.00</span>
+          </div>
+
+          <!-- Submit -->
+          <button class="w-100 btn btn-lg btn-warning" type="submit">
+            Submit form
+          </button>
+        </form>
+      </div>
+      <p class="mt-5 mb-3 text-muted">Tomás Sánchez &copy; 2021</p>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Custom JS-->
+    <script src="script/index.js"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
