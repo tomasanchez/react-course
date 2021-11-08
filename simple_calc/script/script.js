@@ -21,7 +21,8 @@ function onCalculate() {
   var result = 0;
 
   let operation =
-    operatorTable[document.getElementById("operator").textContent];
+    operatorTable[document.getElementById("operator").textContent] ||
+    ((a, b) => NaN);
 
   result = operation(
     parseFloat(document.getElementById("operand-0").value),
