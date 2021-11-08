@@ -9,7 +9,7 @@ body {
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: rgb(152, 195, 181);
+  background-color: rgba(152, 195, 181, 0.911);
 }
 
 select {
@@ -23,6 +23,7 @@ select {
   margin: auto;
   color: #212121;
   border-radius: 25px;
+  opacity: 90%;
 }
 
 @media (max-width: 768px) {
