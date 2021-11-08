@@ -18,22 +18,17 @@ function onChangeOperator(operator) {
 }
 
 function onCalculate() {
-  var result = 0;
-  let operation =
-    operatorTable[document.getElementById("operator").textContent] ||
-    ((a, b) => {
-      alert(
-        `Unsupported operator ${
-          document.getElementById("operator").textContent
-        }`
-      );
-      return NaN;
-    });
-
-  result = operation(
-    parseFloat(document.getElementById("operand-0").value),
-    parseFloat(document.getElementById("operand-1").value)
-  );
+  let textOperator = document.getElementById("operator").textContent,
+    operation =
+      operatorTable[textOperator] ||
+      ((a, b) => {
+        alert(`Unsupported operator ${textOperator}`);
+        return NaN;
+      }),
+    result = operation(
+      parseFloat(document.getElementById("operand-0").value),
+      parseFloat(document.getElementById("operand-1").value)
+    );
 
   document.getElementById("result").value = result.toLocaleString();
 }
