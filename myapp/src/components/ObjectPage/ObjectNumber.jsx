@@ -11,6 +11,7 @@ function ObjectNumber({
   icon,
   state,
   direction,
+  tooltip,
 }) {
   return (
     <ObjectAttribute
@@ -21,6 +22,7 @@ function ObjectNumber({
       icon={icon}
       state={state}
       direction={direction}
+      tooltip={tooltip}
     />
   );
 }
