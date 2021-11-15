@@ -2,7 +2,7 @@ import React from "react";
 import { ObjectPage } from "@ui5/webcomponents-react/dist/ObjectPage";
 import { IllustratedMessage } from "@ui5/webcomponents-react/dist/IllustratedMessage";
 import { IllustrationMessageType } from "@ui5/webcomponents-react/dist/IllustrationMessageType";
-import { Avatar } from "@ui5/webcomponents-react/dist/Avatar";
+// import { Avatar } from "@ui5/webcomponents-react/dist/Avatar";
 import ObjectTitle from "../../components/ObjectPage/ObjectTitle";
 import ObjectHeader from "../../components/ObjectPage/ObjectHeader";
 import "@ui5/webcomponents-fiori/dist/illustrations/NoData.js";
