@@ -12,7 +12,7 @@ function ObjectHeader() {
       <FlexBox direction={FlexBoxDirection.Row} style={{ marginLeft: "3rem" }}>
         <FlexBox direction={FlexBoxDirection.Column}>
           <ObjectAttribute label="Location" text="Warehouse A" />
-          <ObjectAttribute label="Halway" text="23L" />
+          <ObjectAttribute label="Halfway" text="23L" />
           <ObjectNumber label="Rack" number="144" />
         </FlexBox>
         <ObjectAttribute
