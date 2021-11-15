@@ -4,7 +4,11 @@ import { Title } from "@ui5/webcomponents-react/dist/Title";
 import { TitleLevel } from "@ui5/webcomponents-react/dist/TitleLevel";
 import { Breadcrumbs } from "@ui5/webcomponents-react/dist/Breadcrumbs";
 import { BreadcrumbsItem } from "@ui5/webcomponents-react/dist/BreadcrumbsItem";
-import { Label } from "@ui5/webcomponents-react";
+import { Badge } from "@ui5/webcomponents-react/dist/Badge";
+import { Icon } from "@ui5/webcomponents-react/dist/Icon";
+import ObjectAttribute from "./ObjectAttribute";
+import HeaderAction from "../Actions/HeaderAction";
+import ObjectNumber from "./ObjectNumber";
 
 function ObjectTitle({ title = "Unnamed Product", id = "RM034LPS" }) {
   return (
@@ -14,7 +18,7 @@ function ObjectTitle({ title = "Unnamed Product", id = "RM034LPS" }) {
           {title}
         </Title>
       }
-      subHeader={<Label tooltip="SKU">{id}</Label>}
+      subHeader={<ObjectAttribute text={id} icon="bar-code" tooltip="SKU" />}
       breadcrumbs={
         <Breadcrumbs>
           <BreadcrumbsItem>Products</BreadcrumbsItem>
@@ -22,7 +26,17 @@ function ObjectTitle({ title = "Unnamed Product", id = "RM034LPS" }) {
         </Breadcrumbs>
       }
       tooltip="Product details"
-    />
+      actions={[
+        <HeaderAction text="Add to Cart" design="Positive" icon="cart-4" />,
+      ]}
+    >
+      <Badge
+        icon={<Icon name="lead" />}
+        colorScheme="7"
+        tooltip="Price"
+        children={<ObjectNumber number="1999.99" />}
+      />
+    </DynamicPageTitle>
   );
 }
 
