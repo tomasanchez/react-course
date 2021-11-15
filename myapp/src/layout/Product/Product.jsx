@@ -11,10 +11,11 @@ import "@ui5/webcomponents-icons/dist/product";
 function Product() {
   return (
     <ObjectPage
-      headerTitle={<ObjectTitle title="Product Red" />}
+      headerTitle={<ObjectTitle title="Notebook Professional 15" />}
       headerContent={<ObjectHeader />}
       style={{ height: "100vh" }}
-      image={<Avatar size="L" icon="product" colorScheme="Accent5" />}
+      // image={<Avatar size="XL" icon="product" colorScheme="Accent5" />}
+      image="https://www.masala.com/cloud/2021/07/27/8F6goM2X-Laptop.jpeg.jpeg"
       imageShapeCircle
       placeholder={<IllustratedMessage name={IllustrationMessageType.NoData} />}
     />
