@@ -18,7 +18,8 @@ function ObjectHeader() {
         <ObjectAttribute
           direction={FlexBoxDirection.Column}
           label="Availability"
-          text="In Stock"
+          stateValue="In Stock"
+          text="In Stock (97 units)"
           stateFormatter={Formatter.stockState}
         />
       </FlexBox>
