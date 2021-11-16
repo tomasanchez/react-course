@@ -26,9 +26,9 @@ function ObjectTitle({ title = "Unnamed Product", id = "RM034LPS" }) {
         </Breadcrumbs>
       }
       tooltip="Product details"
-      actions={[
-        <HeaderAction text="Add to Cart" design="Positive" icon="cart-4" />,
-      ]}
+      actions={
+        <HeaderAction text="Add to Cart" design="Positive" icon="cart-4" />
+      }
     >
       <Badge
         icon={<Icon name="lead" />}
