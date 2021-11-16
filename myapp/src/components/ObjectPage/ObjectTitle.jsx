@@ -33,7 +33,7 @@ function ObjectTitle({ title = "Unnamed Product", id = "RM034LPS" }) {
       <Badge
         icon={<Icon name="lead" />}
         colorScheme="7"
-        tooltip="Price"
+        tooltip="Pricing"
         children={<ObjectNumber number="1999.99" />}
       />
     </DynamicPageTitle>
