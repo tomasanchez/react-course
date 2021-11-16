@@ -13,8 +13,8 @@ import ReviewsSection from "./ReviewsSection";
 function Product() {
   return (
     <ObjectPage
-      headerTitle={<ObjectTitle title="Notebook Professional 15" />}
-      headerContent={<ObjectHeader />}
+      headerTitle={ObjectTitle("Notebook Professional 15")}
+      headerContent={ObjectHeader()}
       style={{ height: "100vh" }}
       // image={<Avatar size="XL" icon="product" colorScheme="Accent5" />}
       image="https://www.masala.com/cloud/2021/07/27/8F6goM2X-Laptop.jpeg.jpeg"

@@ -9,7 +9,7 @@ import Formatter from "../../utils/formatter";
 function ObjectHeader() {
   return (
     <DynamicPageHeader>
-      <FlexBox direction={FlexBoxDirection.Row} style={{ marginLeft: "3rem" }}>
+      <FlexBox direction={FlexBoxDirection.Row}>
         <FlexBox direction={FlexBoxDirection.Column}>
           <ObjectAttribute label="Location" text="Warehouse A" />
           <ObjectAttribute label="Halfway" text="23L" />
