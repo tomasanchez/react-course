@@ -13,7 +13,7 @@ import ReviewsSection from "./ReviewsSection";
 function Product() {
   return (
     <ObjectPage
-      headerTitle={ObjectTitle("Notebook Professional 15")}
+      headerTitle={ObjectTitle({ title: "Notebook Professional 15" })}
       headerContent={ObjectHeader()}
       style={{ height: "100vh" }}
       // image={<Avatar size="XL" icon="product" colorScheme="Accent5" />}
