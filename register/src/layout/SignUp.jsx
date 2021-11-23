@@ -46,10 +46,13 @@ export default function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
+
     console.log({
+      name: data.get("firstName"),
+      lastName: data.get("lastName"),
       email: data.get("email"),
       password: data.get("password"),
+      tel: data.get("tel"),
     });
   };
 
@@ -132,7 +135,7 @@ export default function SignUp() {
                   value={confirmPw}
                   onChange={(e) => {
                     setConfirmPw(e?.target?.value);
-                    setMachesPassword(confirmPw === password);
+                    setMachesPassword(e?.target?.value === password);
                   }}
                   error={!pwMatches}
                 />
