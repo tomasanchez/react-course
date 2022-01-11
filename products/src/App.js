@@ -5,6 +5,7 @@ import Worklist from "./layout/Worklist/Worklist";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LogIn from "./layout/FullScreen/LogIn";
 import Product from "./layout/Object/Product";
+import SignUp from "./layout/FullScreen/SignUp";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LogIn />} />
+          <Route path="/register" element={<SignUp />} />
           <Route path="/products" element={<Worklist />}></Route>
           <Route path="/products/:id" element={<Product />} />
         </Routes>
