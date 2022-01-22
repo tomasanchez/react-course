@@ -59,7 +59,7 @@ export default function SignUp() {
       tel: data.get("tel"),
     };
 
-    FireBaseAPI.save("users", user);
+    FireBaseAPI.saveUser(user);
   };
 
   return (
