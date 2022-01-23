@@ -17,28 +17,7 @@ import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 import Password from "../../components/Input/Password";
 import FireBaseAPI from "../../api/FireBaseAPI";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link
-        color="inherit"
-        href="https://tomasanchez.github.io"
-        target="_blank"
-      >
-        Tomás Sánchez
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import CopyRight from "../../components/CopyRigth/CopyRight";
 
 const theme = createTheme();
 
@@ -203,7 +182,7 @@ export default function SignUp() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
+        <CopyRight sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
   );

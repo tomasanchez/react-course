@@ -14,33 +14,13 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import FireBaseAPI from "../../api/FireBaseAPI";
 import Password from "../../components/Input/Password";
-import { useNavigate } from "react-router-dom";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link
-        color="inherit"
-        href="https://tomasanchez.github.io/"
-        target="_blank"
-      >
-        Tomás Sánchez
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import { Navigate, useNavigate } from "react-router-dom";
+import Helmet from "react-helmet";
+import { AuthContext } from "../../auth/Auth";
+import CopyRight from "../../components/CopyRigth/CopyRight";
 
 const theme = createTheme();
-
-const { useState } = React;
+const { useState, useContext } = React;
 
 export default function SignIn() {
   const [hasError, setError] = useState(false);
@@ -65,8 +45,13 @@ export default function SignIn() {
     );
   };
 
+  const { currentUser } = useContext(AuthContext);
+
+  if (currentUser) return <Navigate to="/" />;
+
   return (
     <ThemeProvider theme={theme}>
+      <Helmet title={`UI5 Shop - Sign In`} />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -130,7 +115,7 @@ export default function SignIn() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        <CopyRight sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );
