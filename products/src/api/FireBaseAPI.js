@@ -1,7 +1,7 @@
 // FireBase APP
 import FireBaseAppCFG from "../config/firebaseConfig";
 
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -27,6 +27,20 @@ const FireBaseAPI = {
       console.error("Error adding document: ", e.message);
       onError(e);
     }
+  },
+
+  findAll: async (collectionName) => {
+    const querySnapshot = await getDocs(
+      collection(FireBaseAppCFG.db, collectionName)
+    );
+    const result = [];
+
+    querySnapshot.forEach((doc) => {
+      var data = doc.data();
+      data.documentId = doc.id;
+    });
+
+    return result;
   },
 
   saveUser: async (
