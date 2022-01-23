@@ -47,7 +47,9 @@ export default function SignIn() {
 
   const { currentUser } = useContext(AuthContext);
 
-  if (currentUser) return <Navigate to="/" />;
+  if (currentUser) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <ThemeProvider theme={theme}>
