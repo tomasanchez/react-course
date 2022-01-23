@@ -2,7 +2,10 @@
 import FireBaseAppCFG from "../config/firebaseConfig";
 
 import { collection, addDoc } from "firebase/firestore";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 const FireBaseAPI = {
   test: () => console.log("Hello world!"),
@@ -42,7 +45,25 @@ const FireBaseAPI = {
       onSuccess(userCredential);
       user.FireBaseAPI.save("user", user);
     } catch (e) {
-      console.error("Error adding document: ", e.message);
+      console.error("Error adding document: %s", e.message);
+      onError(e);
+    }
+  },
+
+  logIn: async (
+    user,
+    onSuccess = (response) => {},
+    onError = (error) => {}
+  ) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        FireBaseAppCFG.auth,
+        user.email,
+        user.password
+      );
+      onSuccess(userCredential);
+    } catch (e) {
+      console.error("Error when signing in: %s", e.message);
       onError(e);
     }
   },
