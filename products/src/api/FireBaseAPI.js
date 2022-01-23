@@ -67,6 +67,10 @@ const FireBaseAPI = {
       onError(e);
     }
   },
+
+  logOut: async () => {
+    FireBaseAppCFG.auth.signOut();
+  },
 };
 
 export default FireBaseAPI;
