@@ -14,7 +14,7 @@ import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-
+import { useNavigate } from "react-router-dom";
 import Password from "../../components/Input/Password";
 import FireBaseAPI from "../../api/FireBaseAPI";
 
@@ -43,12 +43,18 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+  let navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [confirmPw, setConfirmPw] = useState("");
+  const [isPwInvalid, setPwInvalid] = useState(false);
+  const [emailError, setEmailError] = useState(false);
   const [pwMatches, setMachesPassword] = useState(password === confirmPw);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (!pwMatches) return;
+
     const data = new FormData(event.currentTarget);
 
     const user = {
@@ -59,7 +65,19 @@ export default function SignUp() {
       tel: data.get("tel"),
     };
 
-    FireBaseAPI.saveUser(user);
+    FireBaseAPI.saveUser(
+      user,
+      (response) => {
+        navigate("/");
+      },
+      (error) => {
+        let isEmailError = error.message.toString().includes("email");
+        let isPwError = error.message.toString().includes("password");
+
+        setEmailError(isEmailError);
+        setPwInvalid(isPwError);
+      }
+    );
   };
 
   return (
@@ -114,7 +132,15 @@ export default function SignUp() {
                   name="email"
                   autoComplete="email"
                   type="email"
-                  helperText="We will never share your email with anyone else"
+                  error={emailError}
+                  helperText={
+                    emailError
+                      ? "Email already in use"
+                      : "We will never share your email with anyone else"
+                  }
+                  onChange={() => {
+                    setEmailError(false);
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -131,8 +157,11 @@ export default function SignUp() {
               <Grid item xs={12}>
                 <Password
                   value={password}
+                  error={isPwInvalid}
+                  helper={"Password too weak"}
                   onChange={(e) => {
                     setPassword(e?.target?.value);
+                    if (isPwInvalid) setPwInvalid(false);
                   }}
                 />
               </Grid>
@@ -167,7 +196,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
