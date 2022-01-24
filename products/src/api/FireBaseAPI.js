@@ -33,18 +33,23 @@ const FireBaseAPI = {
   },
 
   findAll: async (collectionName) => {
-    const querySnapshot = await getDocs(
-      collection(FireBaseAppCFG.db, collectionName)
-    );
-    const result = [];
+    try {
+      const querySnapshot = await getDocs(
+        collection(FireBaseAppCFG.db, collectionName)
+      );
 
-    querySnapshot.forEach((d) => {
-      var data = d.data();
-      data.documentId = d.id;
-      result.push(data);
-    });
+      const result = [];
 
-    return result;
+      querySnapshot.forEach((d) => {
+        var data = d.data();
+        data.documentId = d.id;
+        result.push(data);
+      });
+
+      return result;
+    } catch (e) {
+      return [];
+    }
   },
 
   findById: async (collectionName, id) => {
@@ -59,14 +64,19 @@ const FireBaseAPI = {
 
       return data;
     } catch (e) {
-      let docSnap = await getDoc(docRef);
+      try {
+        let docSnap = await getDoc(docRef);
 
-      if (docSnap.exists()) {
-        var data = docSnap.data();
-        data.documentId = docSnap.id;
-        return data;
+        if (docSnap.exists()) {
+          var data = docSnap.data();
+          data.documentId = docSnap.id;
+          return data;
+        }
+      } catch (error) {
+        return undefined;
       }
-      return null;
+
+      return undefined;
     }
   },
 
@@ -84,7 +94,6 @@ const FireBaseAPI = {
       onSuccess(userCredential);
       user.FireBaseAPI.save("user", user);
     } catch (e) {
-      console.error("Error adding document: %s", e.message);
       onError(e);
     }
   },
@@ -102,7 +111,6 @@ const FireBaseAPI = {
       );
       onSuccess(userCredential);
     } catch (e) {
-      console.error("Error when signing in: %s", e.message);
       onError(e);
     }
   },
