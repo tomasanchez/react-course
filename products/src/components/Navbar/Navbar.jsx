@@ -25,7 +25,6 @@ function Navbar(props) {
   const profilePopOverRef = useRef(null);
   const handleProfileClick = (e) => {
     profilePopOverRef.current.showAt(e.detail.targetRef);
-    console.log(profilePopOverRef);
   };
 
   return (
