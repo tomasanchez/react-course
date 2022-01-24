@@ -10,7 +10,7 @@ import { Helmet } from "react-helmet";
 import Navbar from "../../components/Navbar/Navbar";
 import { productState } from "../../hooks/Products";
 import { List } from "@ui5/webcomponents-react/dist/List";
-import { StandardListItem } from "@ui5/webcomponents-react";
+import { FlexBox, StandardListItem } from "@ui5/webcomponents-react";
 import Formatter from "../../utils/formatter";
 import { useNavigate } from "react-router-dom";
 import FireBaseAPI from "../../api/FireBaseAPI";
@@ -111,14 +111,14 @@ function Worklist() {
       >
         {aList.map((product) => (
           <StandardListItem
-            key={product.id}
+            key={product.documentId}
             image={product.image}
             description={product.supplier}
             additionalText={productState(product)}
             additionalTextState={Formatter.stockState(productState(product))}
-            data-id={product.id}
+            data-id={product.documentId}
           >
-            {product.title}
+            <FlexBox direction="Column">{product.title}</FlexBox>
           </StandardListItem>
         ))}
       </List>
