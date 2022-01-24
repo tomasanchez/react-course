@@ -69,6 +69,7 @@ function IconTabBar(props) {
 }
 
 function Worklist() {
+  const [busy, setBusy] = useState(true);
   const [products, setProducts] = useState([]);
   const [sQuery, setQuery] = useState("");
   const aList = [...products]?.filter((p) => productState(p).includes(sQuery));
@@ -89,6 +90,7 @@ function Worklist() {
   useEffect(() => {
     FireBaseAPI.findAll("products").then((result) => {
       setProducts(result);
+      setTimeout(() => setBusy(false), 500);
     });
   });
 
@@ -101,7 +103,12 @@ function Worklist() {
       <Navbar />
       <Bar startContent={<Title children="Listing Products" />} />
       <IconTabBar onFilter={onFilter} data={[...products]} />
-      <List noDataText="No products available" onItemClick={onNavTo}>
+      <List
+        busy={busy}
+        busyDelay={300}
+        noDataText="No products available"
+        onItemClick={onNavTo}
+      >
         {aList.map((product) => (
           <StandardListItem
             key={product.id}
