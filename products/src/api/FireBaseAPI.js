@@ -1,15 +1,20 @@
 // FireBase APP
 import FireBaseAppCFG from "../config/firebaseConfig";
 
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  getDoc,
+  doc,
+  getDocFromCache,
+} from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
 const FireBaseAPI = {
-  test: () => console.log("Hello world!"),
-
   save: async (
     collectionName,
     data,
@@ -21,10 +26,8 @@ const FireBaseAPI = {
         collection(FireBaseAppCFG.db, collectionName),
         data
       );
-      console.log("Document written with ID: ", docRef.id);
       onSuccess(docRef);
     } catch (e) {
-      console.error("Error adding document: ", e.message);
       onError(e);
     }
   },
@@ -35,19 +38,41 @@ const FireBaseAPI = {
     );
     const result = [];
 
-    querySnapshot.forEach((doc) => {
-      var data = doc.data();
-      data.documentId = doc.id;
+    querySnapshot.forEach((d) => {
+      var data = d.data();
+      data.documentId = d.id;
+      result.push(data);
     });
 
     return result;
   },
 
+  findById: async (collectionName, id) => {
+    let docRef = doc(FireBaseAppCFG.db, collectionName, id);
+    // Get a document, forcing the SDK to fetch from the offline cache.
+    try {
+      let docSnap = await getDocFromCache(docRef);
+      // Document was found in the cache. If no cached document exists,
+      // an error will be returned to the 'catch' block below.
+      let data = docSnap.data();
+      data.documentId = docSnap.id;
+
+      return data;
+    } catch (e) {
+      let docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        var data = docSnap.data();
+        data.documentId = docSnap.id;
+        return data;
+      }
+      return null;
+    }
+  },
+
   saveUser: async (
     user,
-    onSuccess = (response) => {
-      console.log(response);
-    },
+    onSuccess = (response) => {},
     onError = (error) => {}
   ) => {
     try {

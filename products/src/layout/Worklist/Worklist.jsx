@@ -8,13 +8,14 @@ import { SemanticColor } from "@ui5/webcomponents-react/dist/SemanticColor";
 import { Title } from "@ui5/webcomponents-react/dist/Title";
 import { Helmet } from "react-helmet";
 import Navbar from "../../components/Navbar/Navbar";
-import getProducts, { productState } from "../../hooks/Products";
+import { productState } from "../../hooks/Products";
 import { List } from "@ui5/webcomponents-react/dist/List";
 import { StandardListItem } from "@ui5/webcomponents-react";
 import Formatter from "../../utils/formatter";
 import { useNavigate } from "react-router-dom";
+import FireBaseAPI from "../../api/FireBaseAPI";
 
-const { useState } = React;
+const { useState, useEffect } = React;
 
 function IconTabBar(props) {
   const tabIndex = ["All", "Plenty of Stock", "Shortage", "Out of Stock"];
@@ -68,7 +69,7 @@ function IconTabBar(props) {
 }
 
 function Worklist() {
-  const products = getProducts();
+  const [products, setProducts] = useState([]);
   const [sQuery, setQuery] = useState("");
   const aList = [...products]?.filter((p) => productState(p).includes(sQuery));
   let navigate = useNavigate();
@@ -85,6 +86,12 @@ function Worklist() {
     }, 0);
   };
 
+  useEffect(() => {
+    FireBaseAPI.findAll("products").then((result) => {
+      setProducts(result);
+    });
+  });
+
   const onNavTo = (oEvent) => {
     navigate(`./${oEvent.detail.item.dataset.id}`);
   };
@@ -95,9 +102,9 @@ function Worklist() {
       <Bar startContent={<Title children="Listing Products" />} />
       <IconTabBar onFilter={onFilter} data={[...products]} />
       <List noDataText="No products available" onItemClick={onNavTo}>
-        {aList.map((product, i) => (
+        {aList.map((product) => (
           <StandardListItem
-            key={`Item-${i}-${product.id}`}
+            key={product.id}
             image={product.image}
             description={product.supplier}
             additionalText={productState(product)}
